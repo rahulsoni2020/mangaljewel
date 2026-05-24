@@ -1,65 +1,53 @@
-# Deploy MJ Jewels to GitHub Pages
+# Deploy to GitHub Pages — mangaljewel
 
-Everything is already configured in this repo:
+Repo: **https://github.com/rahulsoni2020/mangaljewel**
 
-- `vite.config.js` — uses `VITE_BASE` for GitHub Pages paths
-- `.github/workflows/deploy.yml` — builds & deploys on every push to `main`
+Live URL (after deploy works): **https://rahulsoni2020.github.io/mangaljewel/**
 
-## One-time setup (about 2 minutes)
+---
 
-### 1. Log in to GitHub
+## Fix: "Failed to create deployment (404)"
 
-Open PowerShell in this folder and run:
+This means **GitHub Pages is not enabled** or the source is not set to **GitHub Actions**.
 
-```powershell
-gh auth login
-```
+### Enable Pages (required — one time)
 
-Choose: **GitHub.com** → **HTTPS** → **Login with a web browser** (follow the prompts).
+1. Open: **https://github.com/rahulsoni2020/mangaljewel/settings/pages**
+2. Under **Build and deployment** → **Source**, choose **GitHub Actions** (not “Deploy from a branch”).
+3. Save if prompted.
 
-### 2. Create repo and push
+### Re-run the deploy
+
+1. Open: **https://github.com/rahulsoni2020/mangaljewel/actions**
+2. Click **Deploy to GitHub Pages** → **Run workflow** → **Run workflow**
+
+Or push any commit to `main`:
 
 ```powershell
 cd "c:\Users\rahul\OneDrive\Desktop\mj"
-gh repo create mj --public --source=. --remote=origin --push
+git add .
+git commit -m "Fix GitHub Pages workflow"
+git push origin main
 ```
 
-If the name `mj` is taken, pick another name (e.g. `mj-jewels`) and update the URL below.
+Wait 1–2 minutes. The **deploy** job should turn green.
 
-### 3. Enable GitHub Pages
+---
 
-```powershell
-gh api repos/{owner}/mj/pages -X POST -f "build_type=workflow"
-```
-
-Or in the browser:
-
-1. Open your repo on GitHub
-2. **Settings** → **Pages**
-3. **Build and deployment** → Source: **GitHub Actions**
-
-### 4. Wait for deploy
-
-```powershell
-gh run watch
-```
-
-Or check **Actions** tab on GitHub. First deploy takes ~1–2 minutes.
-
-## Live site URL
-
-```
-https://<your-github-username>.github.io/mj/
-```
-
-Example: `https://rahul-soni.github.io/mj/` (replace with your username).
-
-## Later updates
+## Push updates later
 
 ```powershell
 git add .
 git commit -m "Your message"
-git push
+git push origin main
 ```
 
-Each push to `main` redeploys automatically.
+---
+
+## Local build (same path as production)
+
+```powershell
+$env:VITE_BASE="/mangaljewel/"
+npm run build
+npm run preview
+```
