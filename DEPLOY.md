@@ -1,6 +1,7 @@
 # GitHub Pages — mangaljewel
 
-**Live URL:** https://rahulsoni2020.github.io/mangaljewel/
+**Live URL:** https://rahulsoni2020.github.io/mangaljewel/  
+**Custom GoDaddy domain:** see **[GODADDY-DOMAIN.md](./GODADDY-DOMAIN.md)**
 
 ---
 

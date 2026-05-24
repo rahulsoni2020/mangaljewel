@@ -28,8 +28,9 @@ jobs:
           cache: npm
 
       - name: Install & build
+        # Root path — required for custom GoDaddy domain (not /mangaljewel/)
         env:
-          VITE_BASE: /${{ github.event.repository.name }}/
+          VITE_BASE: /
         run: |
           npm ci
           npm run build
