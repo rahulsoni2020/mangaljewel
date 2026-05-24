@@ -21,11 +21,15 @@ npm run dev
 
 ## Deploy (GitHub Pages)
 
-Pushes to `main` auto-deploy via GitHub Actions.
+See **[DEPLOY.md](./DEPLOY.md)** for step-by-step instructions.
 
-Live URL: `https://<your-username>.github.io/mj/` (if the repo is named `mj`)
+Quick version (after `gh auth login`):
 
-In the repo: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+```bash
+gh repo create mj --public --source=. --remote=origin --push
+```
+
+Then enable **Settings → Pages → GitHub Actions**. Live URL: `https://<username>.github.io/mj/`
 
 ## Structure
 
