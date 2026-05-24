@@ -1,53 +1,35 @@
-# Deploy to GitHub Pages — mangaljewel
+# GitHub Pages — mangaljewel
 
-Repo: **https://github.com/rahulsoni2020/mangaljewel**
-
-Live URL (after deploy works): **https://rahulsoni2020.github.io/mangaljewel/**
+**Live URL:** https://rahulsoni2020.github.io/mangaljewel/
 
 ---
 
-## Fix: "Failed to create deployment (404)"
+## If deploy failed with 404
 
-This means **GitHub Pages is not enabled** or the source is not set to **GitHub Actions**.
+The old workflow needed **GitHub Actions** as the Pages source. The new workflow publishes to the **`gh-pages` branch** instead.
 
-### Enable Pages (required — one time)
+### One-time setup (do this once)
 
-1. Open: **https://github.com/rahulsoni2020/mangaljewel/settings/pages**
-2. Under **Build and deployment** → **Source**, choose **GitHub Actions** (not “Deploy from a branch”).
-3. Save if prompted.
+1. Open: https://github.com/rahulsoni2020/mangaljewel/settings/pages
 
-### Re-run the deploy
+2. Under **Build and deployment** → **Source**, select:
+   - **Deploy from a branch** (not “GitHub Actions”)
 
-1. Open: **https://github.com/rahulsoni2020/mangaljewel/actions**
-2. Click **Deploy to GitHub Pages** → **Run workflow** → **Run workflow**
+3. Under **Branch**:
+   - Branch: **`gh-pages`**
+   - Folder: **`/ (root)`**
 
-Or push any commit to `main`:
+4. Click **Save**
 
-```powershell
-cd "c:\Users\rahul\OneDrive\Desktop\mj"
-git add .
-git commit -m "Fix GitHub Pages workflow"
-git push origin main
-```
+5. Open: https://github.com/rahulsoni2020/mangaljewel/actions  
+   Run **Deploy to GitHub Pages** → **Run workflow** (or push to `main`)
 
-Wait 1–2 minutes. The **deploy** job should turn green.
+6. Wait ~2 minutes. Refresh **Settings → Pages** — you should see “Your site is live at …”
 
 ---
 
-## Push updates later
+## Notes
 
-```powershell
-git add .
-git commit -m "Your message"
-git push origin main
-```
-
----
-
-## Local build (same path as production)
-
-```powershell
-$env:VITE_BASE="/mangaljewel/"
-npm run build
-npm run preview
-```
+- First deploy creates the `gh-pages` branch automatically.
+- Repo must be **Public** (or have GitHub Pages on your plan if private).
+- Site path: `/mangaljewel/` — already set in the workflow build.
